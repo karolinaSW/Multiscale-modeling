@@ -1,0 +1,17 @@
+\\krywan\redirecteduserfolders\kswierga\documents\visual studio 2015\Projects\Automaty\Automaty\bin\Debug\Automaty.exe.config
+\\krywan\redirecteduserfolders\kswierga\documents\visual studio 2015\Projects\Automaty\Automaty\obj\Debug\Automaty.csprojResolveAssemblyReference.cache
+\\krywan\redirecteduserfolders\kswierga\documents\visual studio 2015\Projects\Automaty\Automaty\obj\Debug\Automaty.Properties.Resources.resources
+\\krywan\redirecteduserfolders\kswierga\documents\visual studio 2015\Projects\Automaty\Automaty\obj\Debug\Automaty.csproj.GenerateResource.Cache
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\bin\Debug\Automaty.exe.config
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\bin\Debug\Automaty.exe
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\bin\Debug\Automaty.pdb
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form1.resources
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form2.resources
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Properties.Resources.resources
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.csproj.GenerateResource.cache
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.csproj.CoreCompileInputs.cache
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.exe
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.pdb
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.csprojResolveAssemblyReference.cache
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form3.resources
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form4.resources
