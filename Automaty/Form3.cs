@@ -17,6 +17,8 @@ namespace Automaty
             InitializeComponent();
             comboBox1.Items.Add("Automats (1D/2D)");
             comboBox1.Items.Add("Game o Life (standard rules)");
+            comboBox1.Items.Add("Grains growth");
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -40,6 +42,12 @@ namespace Automaty
                 Form4 frm4 = new Form4();
 
                 frm4.Show();
+
+            }
+            else if (comboBox1.SelectedItem.ToString() == "Grains growth")
+            {
+                Form5 frm5 = new Form5();
+                frm5.Show();
 
             }
         }

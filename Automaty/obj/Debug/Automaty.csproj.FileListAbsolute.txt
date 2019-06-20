@@ -15,3 +15,4 @@ D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.pdb
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.csprojResolveAssemblyReference.cache
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form3.resources
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form4.resources
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form5.resources

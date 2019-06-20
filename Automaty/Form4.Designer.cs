@@ -153,6 +153,7 @@
             this.button8.TabIndex = 11;
             this.button8.Text = "OK";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // label1
             // 
@@ -173,6 +174,7 @@
             this.label2.Size = new System.Drawing.Size(99, 17);
             this.label2.TabIndex = 13;
             this.label2.Text = "Grid size (x,y):";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // textBox1
             // 
@@ -182,6 +184,7 @@
             this.textBox1.Size = new System.Drawing.Size(53, 22);
             this.textBox1.TabIndex = 14;
             this.textBox1.Text = "20";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
@@ -191,6 +194,7 @@
             this.textBox2.Size = new System.Drawing.Size(53, 22);
             this.textBox2.TabIndex = 15;
             this.textBox2.Text = "20";
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox3
             // 
