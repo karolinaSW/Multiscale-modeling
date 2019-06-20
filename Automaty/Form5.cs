@@ -269,6 +269,7 @@ namespace Automaty
                     }
                 case 2:
                     {
+                        setColorTable(ilosc);
                         //int []tabReservedIndexes;
                         List<int> reservedIndexes = new List<int>();
 
@@ -295,14 +296,18 @@ namespace Automaty
                                     || Math.Pow((i * a - centerX), 2) + Math.Pow((j * a - centerY), 2) <= Math.Pow(r, 2)
                                     || Math.Pow(((i + 1) * a - centerX), 2) + Math.Pow((j * a - centerY), 2) <= Math.Pow(r, 2))
                                 {
-                                    reservedIndexes.Add(grid.currentArray[i, j].index);
-                                    g.FillRectangle(new SolidBrush(Color.LightBlue), i * a + 1, j * a + 1, a - 1, a - 1);
+                                    if(!reservedIndexes.Contains(grid.currentArray[i, j].index))
+                                    {
+                                        reservedIndexes.Add(grid.currentArray[i, j].index);
+
+                                    }
+                                    g.FillRectangle(new SolidBrush(Color.LightCoral), i * a + 1, j * a + 1, a - 1, a - 1);
 
                                 }
                             }
                         }
                         grid.currentArray[firstCellX - 1, firstCellY - 1].currentState = seedNr;
-                        g.FillRectangle(new SolidBrush(Color.LightCoral), (firstCellX-1) * a + 1, (firstCellY - 1) * a + 1, a - 1, a - 1);
+                        g.FillRectangle(new SolidBrush(grainColorTable[seedNr-1]), (firstCellX-1) * a + 1, (firstCellY - 1) * a + 1, a - 1, a - 1);
 
                         seedNr++;
                         g.DrawEllipse(new Pen(Color.Red, 1), centerX - 1, centerY - 1, 2, 2);
@@ -312,7 +317,16 @@ namespace Automaty
                         bool flag=false;
                         while (seedNr <= ilosc)
                         {
-                            
+
+
+                            if (reservedIndexes.Count >= setSizeX * setSizeY)
+                            {
+                                textBox8.Text = "Nie można wyświetlić wszystkich zadanych zarodków ziaren.";
+                                break;
+                            }
+
+
+
                             flag = false;
                             for(int i = 0; i < setSizeX; i++)
                             {
@@ -348,7 +362,10 @@ namespace Automaty
                                                     || Math.Pow((m * a - centerX), 2) + Math.Pow((n * a - centerY), 2) <= Math.Pow(r, 2)
                                                     || Math.Pow(((m + 1) * a - centerX), 2) + Math.Pow((n * a - centerY), 2) <= Math.Pow(r, 2))
                                                 {
-                                                    reservedIndexes.Add(grid.currentArray[m, n].index);
+                                                    if(!reservedIndexes.Contains(grid.currentArray[m, n].index))
+                                                    {
+                                                        reservedIndexes.Add(grid.currentArray[m, n].index);
+                                                    }
                                                     //g.DrawRectangle(new Pen(Color.LightBlue, 2), m * a + 1, n * a + 1, a - 1, a - 1);
                                                     //flag = true;
                                                 }
@@ -366,11 +383,9 @@ namespace Automaty
 
                             }
 
-                            
-
 
                             grid.currentArray[firstCellX - 1, firstCellY - 1].currentState = seedNr;
-                            g.FillRectangle(new SolidBrush(Color.LightCoral), (firstCellX - 1) * a + 1, (firstCellY - 1) * a + 1, a - 1, a - 1);
+                            g.FillRectangle(new SolidBrush(grainColorTable[seedNr-1]), (firstCellX - 1) * a + 1, (firstCellY - 1) * a + 1, a - 1, a - 1);
 
                             seedNr++;
                             g.DrawEllipse(new Pen(Color.Red, 1), centerX - 1, centerY - 1, 2, 2);
