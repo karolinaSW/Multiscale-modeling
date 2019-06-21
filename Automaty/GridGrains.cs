@@ -33,12 +33,18 @@ namespace Automaty
                     }
                     else
                     {
+                        /*
                         float cellRadius = 0;
                         int exceedNeighbours = 0;
                         // TODO: liczenie max liczby sasiadow dla zadanego promienia
 
                         this.currentArray[i, j] = new CellGrains(exceedNeighbours);
                         this.newArray[i, j] = new CellGrains(exceedNeighbours);
+                        */
+
+                        this.currentArray[i, j] = new CellGrains(100);
+                        this.newArray[i, j] = new CellGrains(100);
+
                     }
 
                 }

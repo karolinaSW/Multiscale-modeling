@@ -64,6 +64,7 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button8 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -136,22 +137,22 @@
             // radioButton8
             // 
             this.radioButton8.AutoSize = true;
+            this.radioButton8.Checked = true;
             this.radioButton8.Location = new System.Drawing.Point(3, 102);
             this.radioButton8.Name = "radioButton8";
             this.radioButton8.Size = new System.Drawing.Size(77, 21);
             this.radioButton8.TabIndex = 25;
+            this.radioButton8.TabStop = true;
             this.radioButton8.Text = "Losowe";
             this.radioButton8.UseVisualStyleBackColor = true;
             // 
             // radioButton7
             // 
             this.radioButton7.AutoSize = true;
-            this.radioButton7.Checked = true;
             this.radioButton7.Location = new System.Drawing.Point(3, 65);
             this.radioButton7.Name = "radioButton7";
             this.radioButton7.Size = new System.Drawing.Size(81, 21);
             this.radioButton7.TabIndex = 24;
-            this.radioButton7.TabStop = true;
             this.radioButton7.Text = "Promień";
             this.radioButton7.UseVisualStyleBackColor = true;
             // 
@@ -239,6 +240,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(47, 22);
             this.textBox5.TabIndex = 15;
+            this.textBox5.Text = "3";
             // 
             // textBox4
             // 
@@ -309,7 +311,7 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(53, 22);
             this.textBox9.TabIndex = 19;
-            this.textBox9.Text = "10";
+            this.textBox9.Text = "40";
             // 
             // textBox10
             // 
@@ -318,7 +320,8 @@
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(53, 22);
             this.textBox10.TabIndex = 18;
-            this.textBox10.Text = "10";
+            this.textBox10.Text = "40";
+            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
             // 
             // label7
             // 
@@ -411,6 +414,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
             this.radioButton2.Location = new System.Drawing.Point(6, 48);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(69, 21);
@@ -442,11 +446,24 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(992, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(130, 20);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "< - określ sąsiedztwo";
+            this.label2.UseCompatibleTextRendering = true;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1256, 658);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.textBox9);
@@ -512,5 +529,6 @@
         private System.Windows.Forms.RadioButton radioButton8;
         private System.Windows.Forms.RadioButton radioButton7;
         private System.Windows.Forms.RadioButton radioButton6;
+        private System.Windows.Forms.Label label2;
     }
 }

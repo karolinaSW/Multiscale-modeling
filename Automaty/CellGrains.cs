@@ -14,18 +14,35 @@ namespace Automaty
         public static int numberOfNeighbours;
         public float insidePointX;
         public float insidePointY;
+        public List<KeyValuePair<int, int>> currentStateOfNeighboursList = new List<KeyValuePair<int, int>>();
+
 
         public CellGrains(int n)
         {
-            numberOfNeighbours = n;
-            currentStateOfNeighbours = new int[numberOfNeighbours];
-            currentState = 0;
-            index = 0;
-
-            for (int i = 0; i < numberOfNeighbours; i++)
+            if (n == 100)
             {
-                currentStateOfNeighbours[i] = 0;
+                currentState = 0;
+                index = 0;
+                insidePointX = 0;
+                insidePointY = 0;
 
+            }
+            else
+            {
+
+                numberOfNeighbours = n;
+                currentStateOfNeighbours = new int[numberOfNeighbours];
+                currentState = 0;
+                index = 0;
+
+                insidePointX = 0;
+                insidePointY = 0;
+
+
+                for (int i = 0; i < numberOfNeighbours; i++)
+                {
+                    currentStateOfNeighbours[i] = 0;
+                }
             }
         }
 
