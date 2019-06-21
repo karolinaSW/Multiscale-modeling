@@ -30,6 +30,7 @@ namespace Automaty
         public Color[] grainColorTable;
         private Random rnd = new Random();
         GridGrains grid;
+       
 
 
 
@@ -127,6 +128,7 @@ namespace Automaty
             {
                 flagDynamicNeighbour = true;
                 numberOfNeighbours = 100;
+                radius = Convert.ToInt32(textBox11.Text);
             }
 
 
@@ -149,7 +151,7 @@ namespace Automaty
                 {
                     grid.currentArray[i, j].insidePointX = (rnd.Next(Convert.ToInt32((i * a) * 1000), Convert.ToInt32(((i + 1) * a) * 1000))) / 1000f;
                     grid.currentArray[i, j].insidePointY = (rnd.Next(Convert.ToInt32((j * a) * 1000), Convert.ToInt32(((j + 1) * a) * 1000))) / 1000f;
-
+                    
                 }
             }
 
@@ -211,6 +213,7 @@ namespace Automaty
             {
                 flagDynamicNeighbour = true;
                 numberOfNeighbours = 100;
+                radius = Convert.ToInt32(textBox11.Text);
             }
             if (checkBox1.CheckState == CheckState.Checked)
             {
@@ -349,6 +352,10 @@ namespace Automaty
                                     g.FillRectangle(new SolidBrush(Color.LightCoral), i * a + 1, j * a + 1, a - 1, a - 1);
 
                                 }
+
+                                //g.DrawEllipse(new Pen(Color.Red, 1), grid.currentArray[i, j].insidePointX - 1, grid.currentArray[i, j].insidePointX - 1, 2, 2);
+
+
                             }
                         }
                         grid.currentArray[firstCellX - 1, firstCellY - 1].currentState = seedNr;
@@ -520,8 +527,100 @@ namespace Automaty
                 {
                     case 4:
                         {
+                            for (int i = 0; i < setSizeX; i++)
+                            {
+                                for (int j = 0; j < setSizeY; j++)
+                                {
 
-                            break;
+                                    if (i == 0 && j == 0) //lg naroznik
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, setSizeY - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[setSizeX - 1, j].currentState;
+
+
+                                    }
+                                    else if (i == 0 && j == setSizeY - 1) //ld naroznik
+                                    {
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, 0].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[setSizeX - 1, setSizeY - 1].currentState;
+
+                                    }
+                                    else if (i == setSizeX - 1 && j == 0) //pg naroznik
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, setSizeY-1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[0, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j].currentState;
+
+                                    }
+                                    else if (i == setSizeX - 1 && j == setSizeY - 1) //pd naroznik
+                                    {
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[0, setSizeY-1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, setSizeY - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j].currentState;
+
+                                    }
+                                    else if (i == 0 && j != 0 && j != setSizeY - 1) //lewa krawedz
+                                    {
+
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[setSizeX-1, j].currentState;
+
+
+                                    }
+                                    else if (i == setSizeX - 1 && j != 0 && j != setSizeY - 1) // prawa krawedz
+                                    {
+
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[0, j].currentState;
+
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[0, j].currentState;                                         grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j].currentState;
+
+                                    }
+
+                                    else if (j == 0 && i != 0 && i != setSizeX - 1) // gorna krawedz
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, setSizeY-1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j].currentState;
+
+                                    }
+                                    else if (j == setSizeY - 1 && i != 0 && i != setSizeX - 1) // dolna krawedz
+                                    {
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, 0].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j].currentState;
+
+                                    }
+                                    else // srodek siatki, nie na brzegu
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j].currentState;
+
+                                    }
+
+                                }
+                            }
+                                break;
                         }
 
                     case 8:
@@ -709,6 +808,100 @@ namespace Automaty
                     case 4:
                         {
 
+                            for (int i = 0; i < setSizeX; i++)
+                            {
+                                for (int j = 0; j < setSizeY; j++)
+                                {
+
+                                    if (i == 0 && j == 0) //lg naroznik
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                        
+
+                                    }
+                                    else if (i == 0 && j == setSizeY - 1) //ld naroznik
+                                    {
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                       
+                                    }
+                                    else if (i == setSizeX - 1 && j == 0) //pg naroznik
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j].currentState;
+                                        
+                                    }
+                                    else if (i == setSizeX - 1 && j == setSizeY - 1) //pd naroznik
+                                    {
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j].currentState;
+                                       
+                                    }
+                                    else if (i == 0 && j != 0 && j != setSizeY - 1) //lewa krawedz
+                                    {
+                                        
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                        
+
+                                    }
+                                    else if (i == setSizeX - 1 && j != 0 && j != setSizeY - 1) // prawa krawedz
+                                    {
+                                        
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[0, j].currentState;
+
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j].currentState;
+                                       
+                                    }
+
+                                    else if (j == 0 && i != 0 && i != setSizeX - 1) // gorna krawedz
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j].currentState;
+                                        
+                                    }
+                                    else if (j == setSizeY - 1 && i != 0 && i != setSizeX - 1) // dolna krawedz
+                                    {
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                    
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j].currentState;
+                                        
+                                    }
+                                    else // srodek siatki, nie na brzegu
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j].currentState;
+                                        
+                                    }
+
+                                }
+                            }
                             break;
                         }
 
@@ -719,17 +912,7 @@ namespace Automaty
                             {
                                 for (int j = 0; j < setSizeY; j++)
                                 {
-                                    /*
-                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
-                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
-                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
-                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i + 1, j + 1].currentState;
-                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i, j + 1].currentState;
-                                    grid.currentArray[i, j].currentStateOfNeighbours[5] = grid.currentArray[i - 1, j + 1].currentState;
-                                    grid.currentArray[i, j].currentStateOfNeighbours[6] = grid.currentArray[i - 1, j].currentState;
-                                    grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
-                                    */
-
+                                    
                                     if (i == 0 && j == 0) //lg naroznik
                                     {
                                         grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
@@ -737,9 +920,6 @@ namespace Automaty
                                         grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i + 1, j + 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i, j + 1].currentState;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i + 1, j + 1].currentState;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i, j + 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[5] = 0;
                                         grid.currentArray[i, j].currentStateOfNeighbours[6] = 0;
                                         grid.currentArray[i, j].currentStateOfNeighbours[7] = 0;
@@ -747,9 +927,7 @@ namespace Automaty
                                     }
                                     else if (i == 0 && j == setSizeY - 1) //ld naroznik
                                     {
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
+                                        
                                         grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
@@ -765,9 +943,6 @@ namespace Automaty
                                         grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
                                         grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
                                         grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i, j + 1].currentState;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[5] = grid.currentArray[i - 1, j + 1].currentState;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[6] = grid.currentArray[i - 1, j].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i, j + 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[5] = grid.currentArray[i - 1, j + 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[6] = grid.currentArray[i - 1, j].currentState;
@@ -775,40 +950,32 @@ namespace Automaty
                                     }
                                     else if (i == setSizeX - 1 && j == setSizeY - 1) //pd naroznik
                                     {
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
                                         grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
                                         grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
                                         grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
                                         grid.currentArray[i, j].currentStateOfNeighbours[5] = 0;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[6] = grid.currentArray[i - 1, j].currentState;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[6] = grid.currentArray[i - 1, j].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
                                     }
                                     else if (i == 0 && j != 0 && j != setSizeY - 1) //lewa krawedz
                                     {
                                         grid.currentArray[i, j].currentStateOfNeighbours[6] = 0;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i + 1, j].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i + 1, j + 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i, j + 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[5] = 0;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[6] = grid.currentArray[i - 1, j].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[7] = 0;
 
                                     }
                                     else if (i == setSizeX - 1 && j != 0 && j != setSizeY - 1) // prawa krawedz
                                     {
                                         grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[0, j].currentState;
-
                                         grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
                                         grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i, j + 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[5] = grid.currentArray[i - 1, j + 1].currentState;
@@ -829,13 +996,12 @@ namespace Automaty
                                     }
                                     else if (j == setSizeY - 1 && i != 0 && i != setSizeX - 1) // dolna krawedz
                                     {
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        
                                         grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
                                         grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
-                                        //grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i, j + 1].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[5] = 0;
                                         grid.currentArray[i, j].currentStateOfNeighbours[6] = grid.currentArray[i - 1, j].currentState;
                                         grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
@@ -860,13 +1026,376 @@ namespace Automaty
 
                     case 5:
                         {
+                            int mod = 0;//rnd.Next(4);
+
+                            switch(mod)
+                            {
+                                case 0:
+                                    {
+
+                                        for (int i = 0; i < setSizeX; i++)
+                                        {
+                                            for (int j = 0; j < setSizeY; j++)
+                                            {
+
+                                                if (i == 0 && j == 0) //lg naroznik
+                                                {
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i + 1, j].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[5] = 0;
+
+                                                }
+                                                else if (i == 0 && j == setSizeY - 1) //ld naroznik
+                                                {
+
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i + 1, j].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[5] = 0;
+                                                }
+                                                else if (i == setSizeX - 1 && j == 0) //pg naroznik
+                                                {
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbour5s[7] = 0;
+                                                }
+                                                else if (i == setSizeX - 1 && j == setSizeY - 1) //pd naroznik
+                                                {
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbour5s[7] = grid.currentArray[i - 1, j - 1].currentState;
+                                                }
+                                                else if (i == 0 && j != 0 && j != setSizeY - 1) //lewa krawedz
+                                                {
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i + 1, j].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[7] = 0;
+
+                                                }
+                                                else if (i == setSizeX - 1 && j != 0 && j != setSizeY - 1) // prawa krawedz
+                                                {
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
+                                                }
+
+                                                else if (j == 0 && i != 0 && i != setSizeX - 1) // gorna krawedz
+                                                {
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i + 1, j].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[7] = 0;
+                                                }
+                                                else if (j == setSizeY - 1 && i != 0 && i != setSizeX - 1) // dolna krawedz
+                                                {
+
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i + 1, j].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
+                                                }
+                                                else // srodek siatki, nie na brzegu
+                                                {
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i + 1, j].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
+                                                }
+
+                                            }
+                                        }
+
+                                        break;
+                                    }
+                                case 1: // tu trzeba pozmieniac , bo jest tylko przekopiowane
+                                    {
+
+                                        for (int i = 0; i < setSizeX; i++)
+                                        {
+                                            for (int j = 0; j < setSizeY; j++)
+                                            {
+
+                                                if (i == 0 && j == 0) //lg naroznik
+                                                {
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i + 1, j].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[5] = 0;
+
+                                                }
+                                                else if (i == 0 && j == setSizeY - 1) //ld naroznik
+                                                {
+
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i + 1, j].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[5] = 0;
+                                                }
+                                                else if (i == setSizeX - 1 && j == 0) //pg naroznik
+                                                {
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbour5s[7] = 0;
+                                                }
+                                                else if (i == setSizeX - 1 && j == setSizeY - 1) //pd naroznik
+                                                {
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbour5s[7] = grid.currentArray[i - 1, j - 1].currentState;
+                                                }
+                                                else if (i == 0 && j != 0 && j != setSizeY - 1) //lewa krawedz
+                                                {
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i + 1, j].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[7] = 0;
+
+                                                }
+                                                else if (i == setSizeX - 1 && j != 0 && j != setSizeY - 1) // prawa krawedz
+                                                {
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
+                                                }
+
+                                                else if (j == 0 && i != 0 && i != setSizeX - 1) // gorna krawedz
+                                                {
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i + 1, j].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[7] = 0;
+                                                }
+                                                else if (j == setSizeY - 1 && i != 0 && i != setSizeX - 1) // dolna krawedz
+                                                {
+
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i + 1, j].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
+                                                }
+                                                else // srodek siatki, nie na brzegu
+                                                {
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i + 1, j].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i - 1, j + 1].currentState;
+                                                    grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j].currentState;
+                                                    //grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
+                                                }
+
+                                            }
+                                        }
+
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        break;
+                                    }
+                            }
 
                             break;
                         }
 
                     case 6:
-                        {
-                            //rand uklad
+                        {//rand uklad
+
+                            for (int i = 0; i < setSizeX; i++)
+                            {
+                                for (int j = 0; j < setSizeY; j++)
+                                {
+
+                                    if (i == 0 && j == 0) //lg naroznik
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i + 1, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[5] = 0;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[7] = 0;
+
+                                    }
+                                    else if (i == 0 && j == setSizeY - 1) //ld naroznik
+                                    {
+
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[5] = 0;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[7] = 0;
+                                    }
+                                    else if (i == setSizeX - 1 && j == 0) //pg naroznik
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[5] = grid.currentArray[i - 1, j].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[7] = 0;
+                                    }
+                                    else if (i == setSizeX - 1 && j == setSizeY - 1) //pd naroznik
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[5] = grid.currentArray[i - 1, j].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
+                                    }
+                                    else if (i == 0 && j != 0 && j != setSizeY - 1) //lewa krawedz
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i + 1, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[5] = 0;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[7] = 0;
+
+                                    }
+                                    else if (i == setSizeX - 1 && j != 0 && j != setSizeY - 1) // prawa krawedz
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = 0;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[5] = grid.currentArray[i - 1, j].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours4[7] = grid.currentArray[i - 1, j - 1].currentState;
+                                    }                                                     
+
+                                    else if (j == 0 && i != 0 && i != setSizeX - 1) // gorna krawedz
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i + 1, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[5] = grid.currentArray[i - 1, j].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[7] = 0;
+                                    }
+                                    else if (j == setSizeY - 1 && i != 0 && i != setSizeX - 1) // dolna krawedz
+                                    {
+
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[4] = 0;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[5] = grid.currentArray[i - 1, j].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
+                                    }
+                                    else // srodek siatki, nie na brzegu
+                                    {
+                                        grid.currentArray[i, j].currentStateOfNeighbours[0] = grid.currentArray[i, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[1] = grid.currentArray[i + 1, j - 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[2] = grid.currentArray[i + 1, j].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i + 1, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[3] = grid.currentArray[i, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[4] = grid.currentArray[i - 1, j + 1].currentState;
+                                        grid.currentArray[i, j].currentStateOfNeighbours[5] = grid.currentArray[i - 1, j].currentState;
+                                        //grid.currentArray[i, j].currentStateOfNeighbours[7] = grid.currentArray[i - 1, j - 1].currentState;
+                                    }
+
+                                }
+                            }
+
+
                             break;
                         }
 
@@ -885,32 +1414,238 @@ namespace Automaty
 
         public void computeNewStates()
         {
+
+
+            int[] tab = new int[numberOfNeighbours];
+            for (int i = 0; i < setSizeX; i++)
+            {
+                for (int j = 0; j < setSizeY; j++)
+                {
+                    var pairs = new List<KeyValuePair<int, int>>();
+
+                    for (int k = 0; k < numberOfNeighbours; k++)
+                    {
+                        tab[k] = grid.currentArray[i, j].currentStateOfNeighbours[k];
+                    }
+                    for (int k = 0; k < numberOfNeighbours; k++)
+                    {
+                        int wartosc = tab[k];
+                        int licznik = 0;
+
+                        for (int l = 0; l < numberOfNeighbours; l++)
+                        {
+                            if (wartosc == tab[l])
+                            {
+                                licznik++;
+                            }
+                        }
+                        if (!pairs.Contains(new KeyValuePair<int, int>(wartosc, licznik)) && wartosc != 0)
+                        {
+                            pairs.Add(new KeyValuePair<int, int>(wartosc, licznik));
+                        }
+                    }
+
+
+                    int licznikWartosci = 0, wartoscWartosci = 0, licznikWartosciMax = 0;
+
+                    for (int k = 0; k < pairs.Count; k++)
+                    {
+                        licznikWartosci = 0;
+                        if (pairs[k].Key != 0)
+                        {
+                            wartoscWartosci = pairs[k].Value;
+                            for (int l = 0; l < pairs.Count; l++)
+                            {
+                                if (wartoscWartosci == pairs[l].Value)
+                                {
+                                    licznikWartosci++;
+                                }
+
+                            }
+                            if (licznikWartosci > licznikWartosciMax)
+                            {
+                                licznikWartosciMax = licznikWartosci;
+                            }
+                        }
+                    }
+
+                    int[] maxKlucze = new int[licznikWartosciMax];
+
+                    int maxV = 0, maxK = 0;
+                    for (int p = 0; p < pairs.Count; p++)
+                    {
+                        if (pairs[p].Key != 0 && pairs[p].Value > maxV)
+                        {
+                            maxV = pairs[p].Value; // tu mam liczebnosc danego ziarna
+                            maxK = pairs[p].Key; // tu mam numer id ziarna
+                        }
+                    }
+
+                    for (int p = 0, r = 0; p < pairs.Count; p++)
+                    {
+                        if (pairs[p].Value == maxV)
+                        {
+                            maxKlucze[r] = pairs[p].Key;
+                            r++;
+                        }
+                    }
+
+
+                    if (grid.currentArray[i, j].currentState > 0 && maxK == 0)
+                    {
+                        grid.newArray[i, j].currentState = grid.currentArray[i, j].currentState;
+                        continue;
+                    }
+                    else if ((grid.currentArray[i, j].currentState == 0 && maxK == 0) || (grid.currentArray[i, j].currentState == 0 && maxK > 0) || (grid.currentArray[i, j].currentState > 0 && maxK > 0))
+                    {
+                        int los;
+                        if (licznikWartosciMax == 0)
+                        {
+                            grid.newArray[i, j].currentState = grid.currentArray[i, j].currentState;
+
+                        }
+                        else
+                        {
+                            los = rnd.Next(licznikWartosciMax);
+                            grid.newArray[i, j].currentState = maxKlucze[los];
+
+                        }
+
+                    }
+
+                }
+            }
+
+
+
+            /*
             switch (numberOfNeighbours)
             {
                 case 4:
                     {
-                        break;
-                    }
-                case 8:
-                    {
 
-                        int[] tab = new int[8];
+                        int[] tab = new int[numberOfNeighbours];
                         for (int i = 0; i < setSizeX; i++)
                         {
                             for (int j = 0; j < setSizeY; j++)
                             {
                                 var pairs = new List<KeyValuePair<int, int>>();
 
-                                for (int k = 0; k < 8; k++)
+                                for (int k = 0; k < numberOfNeighbours; k++)
                                 {
                                     tab[k] = grid.currentArray[i, j].currentStateOfNeighbours[k];
                                 }
-                                for (int k = 0; k < 8; k++)
+                                for (int k = 0; k < numberOfNeighbours; k++)
                                 {
                                     int wartosc = tab[k];
                                     int licznik = 0;
 
-                                    for (int l = 0; l < 8; l++)
+                                    for (int l = 0; l < numberOfNeighbours; l++)
+                                    {
+                                        if (wartosc == tab[l])
+                                        {
+                                            licznik++;
+                                        }
+                                    }
+                                    if (!pairs.Contains(new KeyValuePair<int, int>(wartosc, licznik)) && wartosc != 0)
+                                    {
+                                        pairs.Add(new KeyValuePair<int, int>(wartosc, licznik));
+                                    }
+                                }
+
+
+                                int licznikWartosci = 0, wartoscWartosci = 0, licznikWartosciMax = 0;
+
+                                for (int k = 0; k < pairs.Count; k++)
+                                {
+                                    licznikWartosci = 0;
+                                    if (pairs[k].Key != 0)
+                                    {
+                                        wartoscWartosci = pairs[k].Value;
+                                        for (int l = 0; l < pairs.Count; l++)
+                                        {
+                                            if (wartoscWartosci == pairs[l].Value)
+                                            {
+                                                licznikWartosci++;
+                                            }
+
+                                        }
+                                        if (licznikWartosci > licznikWartosciMax)
+                                        {
+                                            licznikWartosciMax = licznikWartosci;
+                                        }
+                                    }
+                                }
+
+                                int[] maxKlucze = new int[licznikWartosciMax];
+
+                                int maxV = 0, maxK = 0;
+                                for (int p = 0; p < pairs.Count; p++)
+                                {
+                                    if (pairs[p].Key != 0 && pairs[p].Value > maxV)
+                                    {
+                                        maxV = pairs[p].Value; // tu mam liczebnosc danego ziarna
+                                        maxK = pairs[p].Key; // tu mam numer id ziarna
+                                    }
+                                }
+
+                                for (int p = 0, r = 0; p < pairs.Count; p++)
+                                {
+                                    if (pairs[p].Value == maxV)
+                                    {
+                                        maxKlucze[r] = pairs[p].Key;
+                                        r++;
+                                    }
+                                }
+
+
+                                if (grid.currentArray[i, j].currentState > 0 && maxK == 0)
+                                {
+                                    grid.newArray[i, j].currentState = grid.currentArray[i, j].currentState;
+                                    continue;
+                                }
+                                else if ((grid.currentArray[i, j].currentState == 0 && maxK == 0) || (grid.currentArray[i, j].currentState == 0 && maxK > 0) || (grid.currentArray[i, j].currentState > 0 && maxK > 0))
+                                {
+                                    int los;
+                                    if (licznikWartosciMax == 0)
+                                    {
+                                        grid.newArray[i, j].currentState = grid.currentArray[i, j].currentState;
+
+                                    }
+                                    else
+                                    {
+                                        los = rnd.Next(licznikWartosciMax);
+                                        grid.newArray[i, j].currentState = maxKlucze[los];
+
+                                    }
+
+                                }
+
+                            }
+                        }
+
+                        break;
+                    }
+                case 8:
+                    {
+
+                        int[] tab = new int[numberOfNeighbours];
+                        for (int i = 0; i < setSizeX; i++)
+                        {
+                            for (int j = 0; j < setSizeY; j++)
+                            {
+                                var pairs = new List<KeyValuePair<int, int>>();
+
+                                for (int k = 0; k < numberOfNeighbours; k++)
+                                {
+                                    tab[k] = grid.currentArray[i, j].currentStateOfNeighbours[k];
+                                }
+                                for (int k = 0; k < numberOfNeighbours; k++)
+                                {
+                                    int wartosc = tab[k];
+                                    int licznik = 0;
+
+                                    for (int l = 0; l < numberOfNeighbours; l++)
                                     {
                                         if (wartosc == tab[l])
                                         {
@@ -984,7 +1719,7 @@ namespace Automaty
                                     }
                                     else
                                     {
-                                        los = rnd.Next(licznikWartosciMax - 1);
+                                        los = rnd.Next(licznikWartosciMax);
                                         grid.newArray[i, j].currentState = maxKlucze[los];
 
                                     }
@@ -1010,6 +1745,8 @@ namespace Automaty
                         break;
                     }
             }
+
+            */
         }
 
         private void label2_Click(object sender, EventArgs e)
