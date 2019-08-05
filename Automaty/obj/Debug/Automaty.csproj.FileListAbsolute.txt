@@ -7,12 +7,14 @@ D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\bin\Debug\Automaty.exe
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\bin\Debug\Automaty.pdb
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form1.resources
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form2.resources
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form3.resources
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form4.resources
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form5.resources
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form6.resources
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Properties.Resources.resources
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.csproj.GenerateResource.cache
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.csproj.CoreCompileInputs.cache
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.exe
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.pdb
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.csprojResolveAssemblyReference.cache
-D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form3.resources
-D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form4.resources
-D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form5.resources
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form7.resources

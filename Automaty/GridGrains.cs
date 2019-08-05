@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Automaty
 {
-    class GridGrains
+    public class GridGrains
     {
-        private static int sizeX, sizeY;
+        public static int sizeX, sizeY;
         public CellGrains[,] newArray; //= new Cell[sizeX, sizeY];
         public CellGrains[,] currentArray; // = new Cell[sizeX, sizeY];
 
@@ -59,6 +59,8 @@ namespace Automaty
         {
             return sizeY;
         }
+
+
 
     }
 }
