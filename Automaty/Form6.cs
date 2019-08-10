@@ -68,39 +68,45 @@ namespace Automaty
             */
             if (numberOfNeighbours == 8)
             {
-                energyColor[0] = Color.FromArgb(0, 255, 0); // index w gore -> energia w gore zielony
-                energyColor[1] = Color.FromArgb(64, 255, 0); // index w gore -> energia w gore
-                energyColor[2] = Color.FromArgb(128, 255, 0); // index w gore -> energia w gore
-                energyColor[3] = Color.FromArgb(191, 255, 0); // index w gore -> energia w gore
-                energyColor[4] = Color.FromArgb(255, 255, 0); // index w gore -> energia w gore
-                energyColor[5] = Color.FromArgb(255, 191, 0); // index w gore -> energia w gore
-                energyColor[6] = Color.FromArgb(255, 128, 0); // index w gore -> energia w gore
-                energyColor[7] = Color.FromArgb(255, 64, 0); // index w gore -> energia w gore
-                energyColor[8] = Color.FromArgb(255, 0, 0); // index w gore -> energia w gore czerwony
+                energyColor[0] = Color.FromArgb(131, 0, 255); // index w gore -> energia w gore fiol
+                energyColor[1] = Color.FromArgb(26, 75, 221); // index w gore -> energia w gore nieb
+                energyColor[2] = Color.FromArgb(0, 229, 255); // index w gore -> energia w gore
+                energyColor[3] = Color.FromArgb(21, 234, 31); // index w gore -> energia w gore
+                energyColor[4] = Color.FromArgb(255, 250, 0); // index w gore -> energia w gore
+                energyColor[5] = Color.FromArgb(255, 144, 0); // index w gore -> energia w gore
+                energyColor[6] = Color.FromArgb(255, 12, 0); // index w gore -> energia w gore
+                energyColor[7] = Color.FromArgb(127, 0, 0); // index w gore -> energia w gore
+                energyColor[8] = Color.FromArgb(53, 0, 0); // index w gore -> energia w gore czerwony
             }
             else if (numberOfNeighbours == 4)
             {
-                energyColor[0] = Color.FromArgb(0, 255, 0); // index w gore -> energia w gore zielony
-                energyColor[1] = Color.FromArgb(191, 255, 0); // index w gore -> energia w gore
-                energyColor[2] = Color.FromArgb(255, 191, 0); // index w gore -> energia w gore
-                energyColor[3] = Color.FromArgb(255, 0, 0); // index w gore -> energia w gore czerwony
+                energyColor[0] = Color.FromArgb(26, 75, 221); // index w gore -> energia w gore nieb
+                energyColor[1] = Color.FromArgb(21, 234, 31); // index w gore -> energia w gore
+                energyColor[2] = Color.FromArgb(255, 250, 0); // index w gore -> energia w gore
+                energyColor[3] = Color.FromArgb(255, 144, 0); // index w gore -> energia w gore
+                energyColor[4] = Color.FromArgb(255, 12, 0); // index w gore -> energia w gore
+
             }
             else if (numberOfNeighbours == 5)
             {
-                energyColor[0] = Color.FromArgb(0, 255, 0); // index w gore -> energia w gore zielony
-                energyColor[2] = Color.FromArgb(128, 255, 0); // index w gore -> energia w gore
-                energyColor[4] = Color.FromArgb(255, 255, 0); // index w gore -> energia w gore
-                energyColor[6] = Color.FromArgb(255, 128, 0); // index w gore -> energia w gore
-                energyColor[8] = Color.FromArgb(255, 0, 0); // index w gore -> energia w gore czerwony
+                energyColor[0] = Color.FromArgb(26, 75, 221); // index w gore -> energia w gore nieb
+                energyColor[1] = Color.FromArgb(0, 229, 255); // index w gore -> energia w gore
+                energyColor[2] = Color.FromArgb(21, 234, 31); // index w gore -> energia w gore
+                energyColor[3] = Color.FromArgb(255, 250, 0); // index w gore -> energia w gore
+                energyColor[4] = Color.FromArgb(255, 144, 0); // index w gore -> energia w gore
+                energyColor[5] = Color.FromArgb(255, 12, 0); // index w gore -> energia w gore
+
             }
             else if (numberOfNeighbours == 6)
             {
-                energyColor[0] = Color.FromArgb(0, 255, 0); // index w gore -> energia w gore zielony
-                energyColor[2] = Color.FromArgb(128, 255, 0); // index w gore -> energia w gore
-                energyColor[3] = Color.FromArgb(191, 255, 0); // index w gore -> energia w gore
-                energyColor[5] = Color.FromArgb(255, 191, 0); // index w gore -> energia w gore
-                energyColor[6] = Color.FromArgb(255, 128, 0); // index w gore -> energia w gore
-                energyColor[8] = Color.FromArgb(255, 0, 0); // index w gore -> energia w gore czerwony
+                energyColor[0] = Color.FromArgb(26, 75, 221); // index w gore -> energia w gore nieb
+                energyColor[1] = Color.FromArgb(0, 229, 255); // index w gore -> energia w gore
+                energyColor[2] = Color.FromArgb(21, 234, 31); // index w gore -> energia w gore
+                energyColor[3] = Color.FromArgb(255, 250, 0); // index w gore -> energia w gore
+                energyColor[4] = Color.FromArgb(255, 144, 0); // index w gore -> energia w gore
+                energyColor[5] = Color.FromArgb(255, 12, 0); // index w gore -> energia w gore
+                energyColor[6] = Color.FromArgb(127, 0, 0); // index w gore -> energia w gore
+
             }
 
             drawEnergy();
