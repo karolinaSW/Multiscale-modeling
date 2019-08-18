@@ -35,7 +35,7 @@ namespace Automaty
             index = 0;
             insidePointX = 0;
             insidePointY = 0;
-            energiaKomorki = 0;
+            energiaKomorki = -1;
             recristalized = false;
             dislocationDensity = 0;
             kolor = new Color();

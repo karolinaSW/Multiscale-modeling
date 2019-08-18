@@ -35,9 +35,9 @@ namespace Automaty
         public static int setSizeX;
         public static int setSizeY;
         public static float a; // size of square cell
-        private System.Drawing.Graphics g;
-        private System.Drawing.Pen pen_line = new System.Drawing.Pen(Color.Black, 1);
-        Bitmap bm;
+        private static System.Drawing.Graphics g;
+        private static System.Drawing.Pen pen_line = new System.Drawing.Pen(Color.Black, 1);
+        public static Bitmap bm;
         public static int numberOfNeighbours;
         public static bool flagDynamicNeighbour;
         public static float radius;
@@ -60,12 +60,7 @@ namespace Automaty
         private void button5_Click(object sender, EventArgs e) // draw energy
         {
             energyColor = new Color[numberOfNeighbours + 1];
-            /*
-            for (int a = 0; a < 9; a++)
-            {
-                energyColor[a] = Color.FromArgb(0, 0, a*31); // index w gore -> energia w gore
-            }
-            */
+            
             if (numberOfNeighbours == 8)
             {
                 energyColor[0] = Color.FromArgb(131, 0, 255); // index w gore -> energia w gore fiol
@@ -143,8 +138,7 @@ namespace Automaty
             numberOfGrains = Form5.numberOfGrains;
             grainColorTable = Form5.grainColorTable;
             grid = new GridGrains(setSizeX,setSizeY);
-            grid = Form5.grid;
-
+            grid = Form5.gridForMC;
 
 
             bm = new Bitmap(this.pictureBox1.Width, this.pictureBox1.Height);
@@ -187,7 +181,7 @@ namespace Automaty
             InitializeComponent();
             g = pictureBox1.CreateGraphics();
             grid = new GridGrains(setSizeX, setSizeY);
-            grid = Form5.grid;
+            grid = Form5.gridForMC;
         }
 
         private void button2_Click(object sender, EventArgs e) // do montecarlo

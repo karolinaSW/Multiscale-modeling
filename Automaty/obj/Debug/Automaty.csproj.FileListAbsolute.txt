@@ -16,5 +16,6 @@ D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.csproj.GenerateRe
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.csproj.CoreCompileInputs.cache
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.exe
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.pdb
-D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.csprojResolveAssemblyReference.cache
 D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form7.resources
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.Form8.resources
+D:\STUDIA\VI\wieloskalowe\Automaty\Automaty\obj\Debug\Automaty.csprojResolveAssemblyReference.cache

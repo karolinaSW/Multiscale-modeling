@@ -621,6 +621,7 @@ namespace Automaty
                 checkNeighbours(ref grid);
                 computeNewStates(ref grid);
 
+                pictureBox1.Refresh();
                 Thread.Sleep(300);
 
                 incrementator++;
